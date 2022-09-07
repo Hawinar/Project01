@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="500" ResizeMode="NoResize">
+        Title="MainWindow" Height="350" Width="550" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="calcResult" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="480" Height="50" FontSize="20" IsReadOnly="True" Background="#FFE9ECEA" BorderBrush="#FF003CEF"/>
+        <TextBox x:Name="calcResult" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="530" Height="50" FontSize="20" IsReadOnly="True" Background="#FFE9ECEA" BorderBrush="#FF003CEF"/>
         <Button x:Name="calc0" Content="0" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,120,10" RenderTransformOrigin="-0.25,0.45" Click="calc0_Click"></Button>
         <Button x:Name="calc00" Content="00" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,65,10" RenderTransformOrigin="-0.25,0.45" Click="calc00_Click"></Button>
         <Button x:Name="calcComma" Content="," FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,10,10" RenderTransformOrigin="-0.25,0.45" Click="calcComma_Click"></Button>
@@ -24,14 +24,14 @@
         <Button x:Name="calc8" Content="8" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,65,175" RenderTransformOrigin="-0.25,0.45" Click="calc8_Click"></Button>
         <Button x:Name="calc9" Content="9" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,10,175" RenderTransformOrigin="-0.25,0.45" Click="calc9_Click"></Button>
 
-        <Button x:Name="calcSin" Content="sin" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,175" RenderTransformOrigin="-0.25,0.45" Background="Thistle" Click="calcSin_Click"></Button>
-        <Button x:Name="calcCos" Content="cos" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,120" RenderTransformOrigin="-0.25,0.45" Background="Thistle" Click="calcCos_Click"></Button>
-        <Button x:Name="calcTan" Content="tan" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,65" RenderTransformOrigin="-0.25,0.45" Background="Thistle" Click="calcTan_Click"></Button>
-        <Button x:Name="calcCtg" Content="ctg" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,10" RenderTransformOrigin="-0.25,0.45" Background="Thistle" Click="calcCtg_Click"></Button>
+        <Button x:Name="calcSin" Content="sin" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,175" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcSin_Click"></Button>
+        <Button x:Name="calcCos" Content="cos" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,120" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcCos_Click"></Button>
+        <Button x:Name="calcTan" Content="tan" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,65" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcTan_Click"></Button>
+        <Button x:Name="calcCtg" Content="ctg" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,0,10" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcCtg_Click"></Button>
 
-        <Button x:Name="calcAsin" Content="asin" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,175" RenderTransformOrigin="-0.25,0.45" Background="Thistle" Click="calcAsin_Click"></Button>
-        <Button x:Name="calcAcos" Content="acos" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,120" RenderTransformOrigin="-0.25,0.45" Background="Thistle" Click="calcAcos_Click"></Button>
-        <Button x:Name="calcAtan" Content="atan" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,65" RenderTransformOrigin="-0.25,0.45" Background="Thistle" Click="calcAtan_Click"></Button>
+        <Button x:Name="calcAsin" Content="asin" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,175" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcAsin_Click"></Button>
+        <Button x:Name="calcAcos" Content="acos" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,120" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcAcos_Click"></Button>
+        <Button x:Name="calcAtan" Content="atan" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,65" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcAtan_Click"></Button>
         <Button x:Name="calcFact" Content="n!" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="120,0,0,65" RenderTransformOrigin="-0.25,0.45" Background="#FFDDDDDD" Click="calcFact_Click"></Button>
 
         <Button x:Name="calcSum" Content="+" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,175,175" RenderTransformOrigin="-0.25,0.45" Click="calcSum_Click"></Button>
@@ -44,12 +44,18 @@
         <Button x:Name="calcNegative" Content="+/-" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,230,65" RenderTransformOrigin="-0.25,0.45" Click="calcNegative_Click"></Button>
         <Button x:Name="calcClear" Content="C" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="0,0,230,175" RenderTransformOrigin="-0.25,0.45" Background="#FFF7BEBE" Click="calcClear_Click" ToolTip="Стирает всю информацию"></Button>
 
-        <Button x:Name="calcRoot" Content="√" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="120,0,0,10" RenderTransformOrigin="-0.25,0.45" Click="calcRoot_Click" Background="#FFDDDDDD"></Button>
-        <Button x:Name="calcPow" Content="xʸ" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,10" RenderTransformOrigin="-0.25,0.45" Click="calcPow_Click" Background="Thistle"></Button>
+        <Button x:Name="calcRoot" Content="√" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="120,0,0,10" RenderTransformOrigin="-0.25,0.45" Click="calcRoot_Click" Background="#FF2ADC24" ToolTip="Если кнопка зелёная - запишется базовое число. Если голубая - степень корня. Если фиолетовая - степень базового числа."></Button>
+        <Button x:Name="calcPow" Content="xʸ" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="65,0,0,10" RenderTransformOrigin="-0.25,0.45" Click="calcPow_Click" Background="#FFFCFFC1" ToolTip="Если кнопка желтная, будет записано значение X, если кнопка оранжевая, будет записано значение Y (Степень)."/>
         <Button x:Name="calcCloseBracket" Content=")" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="120,0,0,120" RenderTransformOrigin="-0.25,0.45" Click="calcCloseBracket_Click"></Button>
         <Button x:Name="calcOpenBracket" Content="(" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="120,0,0,175" RenderTransformOrigin="-0.25,0.45" Click="calcOpenBracket_Click"></Button>
 
-        <Label x:Name="HistoryLabel" Content="" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.496,0.159" Width="480" FontSize="14"/>
+        <Button x:Name="calcTo10" Content="В 10" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="175,0,0,175" RenderTransformOrigin="-0.25,0.45" Click="calcTo10_Click" Background="#FFDDDDDD"></Button>
+        <Button x:Name="calcTo2" Content="В 2" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="175,0,0,120" RenderTransformOrigin="-0.25,0.45" Click="calcTo2_Click"></Button>
+        <Button x:Name="calcTo8" Content="В 8" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="175,0,0,65" RenderTransformOrigin="-0.25,0.45" Click="calcTo8_Click"></Button>
+        <Button x:Name="calcTo16" Content="В 16" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="175,0,0,10" RenderTransformOrigin="-0.25,0.45" Click="calcTo16_Click"></Button>
+
+        <Label x:Name="HistoryLabel" Content="" HorizontalAlignment="Center" Margin="0,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.496,0.159" Width="530" FontSize="14"/>
+
 
 
     </Grid>

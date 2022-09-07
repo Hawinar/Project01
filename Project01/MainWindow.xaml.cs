@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows;
-
+using System.Windows.Media;
 
 namespace Project01
 {
@@ -13,13 +13,19 @@ namespace Project01
         public MainWindow()
         {
             InitializeComponent();
-
+            calcTo10.Background = new SolidColorBrush(Color.FromRgb(159, 232, 237));
         }
         string memory = string.Empty;
         public static string flag = string.Empty;
-        byte commaLimit = 0;
+        byte commaLimit = 0; //В
         DataTable dt = new DataTable();
-        string toExportData = string.Empty;
+        byte modePow = 0; //Обработчик нажатий для метода calcPow_Click
+        byte modeRoot = 0; //Обработчик нажатий для метода calcRoot_Click
+        byte modeNumberSystem = 10; //Хранилище предыдущей системы счисления для методов calcTo10_Click, calcTo2_Click, calcTo8_Click и calcTo16_Click
+        double localMemoryX = 0; //Необходимо для того, чтобы хранить первого аргумента данные до операции Math.Pow() и/или Math.Sqrt
+        double localMemoryY = 0; //Необходимо для того, чтобы хранить второго аргумента данные до операции Math.Pow()
+        double GeneralNumber = 0; //Основное число для расчёта корня
+
         public void GetInfo(string toExportData)
         {
             calcResult.Text += toExportData;
@@ -83,7 +89,19 @@ namespace Project01
             calcResult.Text = String.Empty;
             memory = string.Empty;
             commaLimit = 0;
+            modePow = 0;
+            calcPow.Background = new SolidColorBrush(Color.FromRgb(252, 255, 193));
+            modeRoot = 0;
+            GeneralNumber = 0;
+            modeNumberSystem = 10;
+            calcRoot.Background = new SolidColorBrush(Color.FromRgb(42, 220, 36));
             HistoryLabel.Content = String.Empty;
+            localMemoryX = 0;
+            localMemoryY = 0;
+            calcTo10.Background = new SolidColorBrush(Color.FromRgb(159, 232, 237));
+            calcTo2.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            calcTo8.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            calcTo16.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
         }
 
         private void calc0_Click(object sender, RoutedEventArgs e)
@@ -99,7 +117,7 @@ namespace Project01
                 calcResult.Text += "00";
                 memory = calcResult.Text;
             }
-            
+
         }
 
         private void calcComma_Click(object sender, RoutedEventArgs e)
@@ -126,7 +144,7 @@ namespace Project01
                 }
                 calcResult.Text = calcResult.Text.Remove(calcResult.Text.Length - 1);
             }
-           
+
         }
         private void calcSum_Click(object sender, RoutedEventArgs e)
         {
@@ -163,7 +181,7 @@ namespace Project01
                 commaLimit = 0;
                 HistoryLabel.Content += $"{memory} / ";
                 calcResult.Text = string.Empty;
-            }        
+            }
         }
         private void calcEqual_Click(object sender, RoutedEventArgs e)
         {
@@ -181,56 +199,105 @@ namespace Project01
             {
                 calcResult.Text = (double.Parse(calcResult.Text) * (-1)).ToString();
             }
-            
-            
         }
 
         private void calcOpenBracket_Click(object sender, RoutedEventArgs e)
         {
             calcResult.Text += "(";
+            memory = calcResult.Text;
         }
 
         private void calcCloseBracket_Click(object sender, RoutedEventArgs e)
         {
             calcResult.Text += ")";
+            memory = calcResult.Text;
         }
+
 
         private void calcPow_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (calcResult.Text != string.Empty)
+            {
+                switch (modePow)
+                {
+                    case 0:
+
+                        localMemoryX = double.Parse(calcResult.Text);
+                        calcResult.Text = string.Empty;
+                        modePow = 1;
+                        calcPow.Background = new SolidColorBrush(Color.FromRgb(255, 117, 64));
+                        break;
+                    case 1:
+                        localMemoryY = double.Parse(calcResult.Text);
+                        calcResult.Text = Math.Pow(localMemoryX, localMemoryY).ToString();
+                        modePow = 0;
+                        localMemoryX = 0;
+                        localMemoryY = 0;
+                        calcPow.Background = new SolidColorBrush(Color.FromRgb(252, 255, 193));
+                        break;
+
+                }
+            }
+
         }
 
         private void calcRoot_Click(object sender, RoutedEventArgs e)
         {
-            calcResult.Text = Math.Sqrt(double.Parse(calcResult.Text)).ToString();    
+            if (calcResult.Text != string.Empty)
+            {
+
+                switch (modeRoot)
+                {
+                    case 0:
+                        GeneralNumber = double.Parse(calcResult.Text);
+                        calcResult.Text = string.Empty;
+                        modeRoot = 1;
+                        calcRoot.Background = new SolidColorBrush(Color.FromRgb(160, 36, 220));
+                        break;
+                    case 1:
+                        localMemoryX = double.Parse(calcResult.Text);
+                        calcResult.Text = string.Empty;
+                        modeRoot = 2;
+                        calcRoot.Background = new SolidColorBrush(Color.FromRgb(64, 223, 226));
+                        break;
+                    case 2:
+                        localMemoryY = double.Parse(calcResult.Text);
+                        calcResult.Text = (Math.Pow(GeneralNumber, (localMemoryY / localMemoryX))).ToString();
+                        modeRoot = 0;
+                        localMemoryX = 0;
+                        localMemoryY = 0;
+                        calcRoot.Background = new SolidColorBrush(Color.FromRgb(42, 220, 36));
+                        break;
+
+                }
+            }
         }
 
         private void calcSin_Click(object sender, RoutedEventArgs e)
         {
-            if(calcResult.Text != string.Empty)
+            if (calcResult.Text != string.Empty)
             {
                 double degrees = double.Parse(calcResult.Text);
                 double radians = Math.PI / 180 * degrees;
                 calcResult.Text = Math.Sin(radians).ToString();
                 memory = calcResult.Text;
             }
-            
+
         }
 
         private void calcCos_Click(object sender, RoutedEventArgs e)
         {
-            if(calcResult.Text != string.Empty)
+            if (calcResult.Text != string.Empty)
             {
                 double degrees = double.Parse(calcResult.Text);
                 double radians = Math.PI / 180 * degrees;
                 memory = calcResult.Text;
             }
-            
         }
 
         private void calcTan_Click(object sender, RoutedEventArgs e)
         {
-            if(calcResult.Text != string.Empty)
+            if (calcResult.Text != string.Empty)
             {
                 double degrees = double.Parse(calcResult.Text);
                 double radians = Math.PI / 180 * degrees;
@@ -241,7 +308,7 @@ namespace Project01
 
         private void calcCtg_Click(object sender, RoutedEventArgs e)
         {
-            if(calcResult.Text != string.Empty)
+            if (calcResult.Text != string.Empty)
             {
                 double degrees = double.Parse(calcResult.Text);
                 double radians = Math.PI / 180 * degrees;
@@ -252,15 +319,19 @@ namespace Project01
 
         private void calcAsin_Click(object sender, RoutedEventArgs e)
         {
-            double degrees = double.Parse(calcResult.Text);
-            double radians = Math.PI / 180 * degrees;
-            calcResult.Text = Math.Asin(radians).ToString();
-            memory = calcResult.Text;
+            if (calcResult.Text != string.Empty)
+            {
+                double degrees = double.Parse(calcResult.Text);
+                double radians = Math.PI / 180 * degrees;
+                calcResult.Text = Math.Asin(radians).ToString();
+                memory = calcResult.Text;
+            }
+
         }
 
         private void calcAcos_Click(object sender, RoutedEventArgs e)
         {
-            if(calcResult.Text != string.Empty)
+            if (calcResult.Text != string.Empty)
             {
                 double degrees = double.Parse(calcResult.Text);
                 double radians = Math.PI / 180 * degrees;
@@ -271,7 +342,7 @@ namespace Project01
 
         private void calcAtan_Click(object sender, RoutedEventArgs e)
         {
-            if(calcResult.Text != string.Empty)
+            if (calcResult.Text != string.Empty)
             {
                 double degrees = double.Parse(calcResult.Text);
                 double radians = Math.PI / 180 * degrees;
@@ -282,14 +353,87 @@ namespace Project01
 
         private void calcFact_Click(object sender, RoutedEventArgs e)
         {
-            int localMemory = 1;
-            for(int i = int.Parse(calcResult.Text); i > 0; i--)
+            if (commaLimit == 0 && calcResult.Text != string.Empty)
             {
-                localMemory *= i;
-                
+                int localMemory = 1;
+                for (int i = int.Parse(calcResult.Text); i > 0; i--)
+                {
+                    localMemory *= i;
+
+                }
+                calcResult.Text = localMemory.ToString();
             }
-            calcResult.Text = localMemory.ToString();
         }
-       
+
+        private void calcTo10_Click(object sender, RoutedEventArgs e)
+        {
+            if (calcResult.Text != string.Empty)
+            {
+                string number = calcResult.Text;
+                int fromBase = modeNumberSystem;
+                int toBase = 10;
+                calcResult.Text = Convert.ToString(Convert.ToInt32(number, fromBase), toBase);
+                modeNumberSystem = 10;
+                calcTo10.Background = new SolidColorBrush(Color.FromRgb(159, 232, 237));
+
+                calcTo2.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo8.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo16.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            }
+
+        }
+
+
+        private void calcTo2_Click(object sender, RoutedEventArgs e)
+        {
+            if (calcResult.Text != string.Empty)
+            {
+                string number = calcResult.Text;
+                int fromBase = modeNumberSystem;
+                int toBase = 2;
+                calcResult.Text = Convert.ToString(Convert.ToInt32(number, fromBase), toBase);
+                modeNumberSystem = 2;
+                calcTo2.Background = new SolidColorBrush(Color.FromRgb(159, 232, 237));
+
+                calcTo8.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo10.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo16.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            }
+        }
+
+        private void calcTo8_Click(object sender, RoutedEventArgs e)
+        {
+            if (calcResult.Text != string.Empty)
+            {
+                string number = calcResult.Text;
+                int fromBase = modeNumberSystem;
+                int toBase = 8;
+                calcResult.Text = Convert.ToString(Convert.ToInt32(number, fromBase), toBase);
+                modeNumberSystem = 8;
+                calcTo8.Background = new SolidColorBrush(Color.FromRgb(159, 232, 237));
+
+                calcTo2.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo10.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo16.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            }
+
+        }
+
+        private void calcTo16_Click(object sender, RoutedEventArgs e)
+        {
+            if (calcResult.Text != string.Empty)
+            {
+                string number = calcResult.Text;
+                int fromBase = modeNumberSystem;
+                int toBase = 16;
+                calcResult.Text = Convert.ToString(Convert.ToInt32(number, fromBase), toBase);
+                modeNumberSystem = 16;
+                calcTo16.Background = new SolidColorBrush(Color.FromRgb(159, 232, 237));
+
+                calcTo2.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo10.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+                calcTo8.Background = new SolidColorBrush(Color.FromRgb(221, 221, 221));
+            }
+        }
     }
 }
